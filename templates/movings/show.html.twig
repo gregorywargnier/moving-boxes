@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Movings{% endblock %}
+
+{% block body %}
+    <h1>Movings</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ moving.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ moving.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('movings_index') }}">back to list</a>
+
+    <a href="{{ path('movings_edit', {'id': moving.id}) }}">edit</a>
+
+    {{ include('movings/_delete_form.html.twig') }}
+{% endblock %}
