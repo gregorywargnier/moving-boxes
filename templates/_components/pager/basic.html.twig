@@ -1,0 +1,45 @@
+{% if pager.pages > 1 %}
+
+{% set sorter_params = {} %}
+{% for sortColumn, sortDirection in sorter %}
+{% set sorter_params = sorter_params|merge({'sortColumn': sortColumn}) %}
+{% set sorter_params = sorter_params|merge({'sortDirection': sortDirection}) %}
+{% endfor %}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+
+        <li class="page-item {{ pager.first == pager.page ? 'disabled' }}">
+            <a class="page-link" href="{{ path(route, {'page': pager.first}|merge(sorter_params)) }}" aria-label="First">
+                <span aria-hidden="true">First</span>
+            </a>
+        </li>
+
+        <li class="page-item {{ pager.first == pager.page ? 'disabled' }}">
+            <a class="page-link" href="{{ path(route, {'page': pager.prev}|merge(sorter_params)) }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        {% for page in 1 .. pager.pages %}
+            <li class="page-item {{ pager.page == page ? 'active' }}">
+                <a class="page-link" href="{{ path(route, {'page': page}|merge(sorter_params)) }}" aria-label="Page {{page}}">
+                    {{ page }}
+                </a>
+            </li>
+        {% endfor %}
+
+        <li class="page-item {{ pager.last == pager.page ? 'disabled' }}">
+            <a class="page-link" href="{{ path(route, {'page': pager.next}|merge(sorter_params)) }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+
+        <li class="page-item {{ pager.last == pager.page ? 'disabled' }}">
+            <a class="page-link" href="{{ path(route, {'page': pager.last}|merge(sorter_params)) }}" aria-label="Last">
+                <span aria-hidden="true">Last</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endif %}

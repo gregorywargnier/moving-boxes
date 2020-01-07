@@ -19,8 +19,8 @@
                 <td>{{ moving.id }}</td>
                 <td>{{ moving.name }}</td>
                 <td>
-                    <a href="{{ path('movings_show', {'id': moving.id}) }}">show</a>
-                    <a href="{{ path('movings_edit', {'id': moving.id}) }}">edit</a>
+                    <a href="{{ path('movings:app:read', {'id': moving.id}) }}">show</a>
+                    <a href="{{ path('movings:app:update', {'id': moving.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('movings_new') }}">Create new</a>
+    <a href="{{ path('movings:app:create') }}">Create new</a>
 {% endblock %}

@@ -27,16 +27,6 @@ class Boxes
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $origin;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $destination;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $content;
@@ -51,6 +41,16 @@ class Boxes
      * @ORM\JoinColumn(nullable=false)
      */
     private $moving;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rooms")
+     */
+    private $origin;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rooms")
+     */
+    private $destination;
 
     public function getId(): ?int
     {
@@ -77,30 +77,6 @@ class Boxes
     public function setName(?string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getOrigin(): ?string
-    {
-        return $this->origin;
-    }
-
-    public function setOrigin(?string $origin): self
-    {
-        $this->origin = $origin;
-
-        return $this;
-    }
-
-    public function getDestination(): ?string
-    {
-        return $this->destination;
-    }
-
-    public function setDestination(?string $destination): self
-    {
-        $this->destination = $destination;
 
         return $this;
     }
@@ -137,6 +113,30 @@ class Boxes
     public function setMoving(?Movings $moving): self
     {
         $this->moving = $moving;
+
+        return $this;
+    }
+
+    public function getOrigin(): ?Rooms
+    {
+        return $this->origin;
+    }
+
+    public function setOrigin(?Rooms $origin): self
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    public function getDestination(): ?Rooms
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(?Rooms $destination): self
+    {
+        $this->destination = $destination;
 
         return $this;
     }

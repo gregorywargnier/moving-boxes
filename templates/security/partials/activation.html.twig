@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Account activation' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+
+        {% if activationStatus %}
+            <div class="alert alert-success">
+                Account user account is activated.<br>You can now <a href="{{ path('security:app:login') }}">login</a>.
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                Account activation failed.<br>Resend the activation email.
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

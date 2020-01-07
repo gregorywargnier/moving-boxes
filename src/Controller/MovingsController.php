@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/movings")
+ * @Route("/moving", name="movings:app")
  */
 class MovingsController extends AbstractController
 {
     /**
-     * @Route("/", name="movings_index", methods={"GET"})
+     * @Route("s", name=":index", methods={"HEAD","GET"})
      */
     public function index(MovingsRepository $movingsRepository): Response
     {
@@ -26,9 +26,9 @@ class MovingsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="movings_new", methods={"GET","POST"})
+     * @Route("", name=":create", methods={"HEAD","GET","POST"})
      */
-    public function new(Request $request): Response
+    public function create(Request $request): Response
     {
         $moving = new Movings();
         $form = $this->createForm(MovingsType::class, $moving);
@@ -39,7 +39,7 @@ class MovingsController extends AbstractController
             $entityManager->persist($moving);
             $entityManager->flush();
 
-            return $this->redirectToRoute('movings_index');
+            return $this->redirectToRoute('movings:app:index');
         }
 
         return $this->render('movings/new.html.twig', [
@@ -49,19 +49,19 @@ class MovingsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="movings_show", methods={"GET"})
+     * @Route("/{id}", name=":read", methods={"HEAD","GET"})
      */
-    public function show(Movings $moving): Response
+    public function read(Movings $moving): Response
     {
-        return $this->render('movings/show.html.twig', [
+        return $this->render('movings/read.html.twig', [
             'moving' => $moving,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="movings_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name=":update", methods={"HEAD","GET","POST"})
      */
-    public function edit(Request $request, Movings $moving): Response
+    public function update(Request $request, Movings $moving): Response
     {
         $form = $this->createForm(MovingsType::class, $moving);
         $form->handleRequest($request);
@@ -69,17 +69,17 @@ class MovingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('movings_index');
+            return $this->redirectToRoute('movings:app:index');
         }
 
-        return $this->render('movings/edit.html.twig', [
+        return $this->render('movings/update.html.twig', [
             'moving' => $moving,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="movings_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name=":delete", methods={"HEAD","GET","DELETE"})
      */
     public function delete(Request $request, Movings $moving): Response
     {
@@ -89,6 +89,6 @@ class MovingsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('movings_index');
+        return $this->redirectToRoute('movings:app:index');
     }
 }

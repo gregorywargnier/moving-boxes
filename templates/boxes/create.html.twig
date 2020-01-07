@@ -7,5 +7,5 @@
 
     {{ include('boxes/_form.html.twig') }}
 
-    <a href="{{ path('boxes_index') }}">back to list</a>
+    <a href="{{ path('movings:app:read', {'id': moving}) }}">back to list</a>
 {% endblock %}

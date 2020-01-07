@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Users implements UserInterface
 {
@@ -46,7 +47,7 @@ class Users implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $screenname;
 
@@ -178,9 +179,14 @@ class Users implements UserInterface
         return $this->screenname;
     }
 
-    public function setScreenname(string $screenname): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setScreenname(): self
     {
-        $this->screenname = $screenname;
+        $this->fullname = $this->firstname;
+        $this->fullname.= ' ';
+        $this->fullname.= substr($this->lastname, 0, 1).".";
 
         return $this;
     }

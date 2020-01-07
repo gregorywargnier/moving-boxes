@@ -42,3 +42,8 @@ La liste des cartons précise
 - picture: photo du contenu
 - content: description du contenu
 - moving: liaison au déménagement
+
+
+## Services
+
+Créer un service permettant l'incrémentation du numéro du carton.

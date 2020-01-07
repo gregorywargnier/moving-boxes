@@ -1,0 +1,9 @@
+{% for status, messages in app.flashes %}
+<div class="alert alert-{{ status }}">
+    <ul class="list-unstyled mb-0">
+        {% for message in messages %}
+        <li>{{ message | raw }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}

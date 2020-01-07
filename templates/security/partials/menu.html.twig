@@ -1,0 +1,17 @@
+<ul class="navbar-nav ml-auto">
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('account:app:profile') }}">{{ app.user.screenname }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('security:app:logout') }}">{% trans %}security.menu.logout{% endtrans %}</a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('security:app:login') }}">{% trans %}security.menu.login{% endtrans %}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('security:app:register') }}">{% trans %}security.menu.register{% endtrans %}</a>
+    </li>
+{% endif %}
+</ul>

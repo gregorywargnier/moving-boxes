@@ -1,0 +1,210 @@
+
+            {# Street Number #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.streetNumber) }}
+                    {{ form_help(form.address.streetNumber) }}
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        {{ form_widget(form.address.streetNumber) }}
+                        {{ form_errors(form.address.streetNumber) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Street Number Extension #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.streetNumberExtension) }}
+                    {{ form_help(form.address.streetNumberExtension) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.streetNumberExtension) }}
+                        {{ form_errors(form.address.streetNumberExtension) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Street Type #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.streetType) }}
+                    {{ form_help(form.address.streetType) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.streetType) }}
+                        {{ form_errors(form.address.streetType) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Street Name #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.streetName) }}
+                    {{ form_help(form.address.streetName) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.streetName) }}
+                        {{ form_errors(form.address.streetName) }}
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            {# Building #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.building) }}
+                    {{ form_help(form.address.building) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.building) }}
+                        {{ form_errors(form.address.building) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Floor #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.floor) }}
+                    {{ form_help(form.address.floor) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.floor) }}
+                        {{ form_errors(form.address.floor) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Floor Number #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.floorNumber) }}
+                    {{ form_help(form.address.floorNumber) }}
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        {{ form_widget(form.address.floorNumber) }}
+                        {{ form_errors(form.address.floorNumber) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Has Elevator #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.hasElevator) }}
+                    {{ form_help(form.address.hasElevator) }}
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        {{ form_widget(form.address.hasElevator) }}
+                        {{ form_errors(form.address.hasElevator) }}
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+
+            {# Country #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.country) }}
+                    {{ form_help(form.address.country) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.country) }}
+                        {{ form_errors(form.address.country) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Postal Code #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.postalCode) }}
+                    {{ form_help(form.address.postalCode) }}
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend col-3">
+                                {{ form_widget(form.address.postalCodePrefix) }}
+                            </div>
+                            {{ form_widget(form.address.postalCode) }}
+                            <div class="input-group-append col-3">
+                                {{ form_widget(form.address.postalCodeSuffix) }}
+                            </div>
+                        </div>
+
+                        {{ form_errors(form.address.postalCode) }}
+                    </div>
+                </div>
+            </div>
+
+            {# City #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.city) }}
+                    {{ form_help(form.address.city) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.city) }}
+                        {{ form_errors(form.address.city) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Cedex #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.cedex) }}
+                    {{ form_help(form.address.cedex) }}
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        {{ form_widget(form.address.cedex) }}
+                        {{ form_errors(form.address.cedex) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Post Box Code #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.postBoxCode) }}
+                    {{ form_help(form.address.postBoxCode) }}
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        {{ form_widget(form.address.postBoxCode) }}
+                        {{ form_errors(form.address.postBoxCode) }}
+                    </div>
+                </div>
+            </div>
+
+            {# Locality #}
+            <div class="row">
+                <div class="col-4">
+                    {{ form_label(form.address.locality) }}
+                    {{ form_help(form.address.locality) }}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        {{ form_widget(form.address.locality) }}
+                        {{ form_errors(form.address.locality) }}
+                    </div>
+                </div>
+            </div>
