@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Movings;
+use App\Entity\UsersMovings;
 use App\Form\MovingsType;
 use App\Repository\MovingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,8 +21,21 @@ class MovingsController extends AbstractController
      */
     public function index(MovingsRepository $movingsRepository): Response
     {
+        // 1. Retrieve Entities
+        // --
+
+        // Get current user
+        $user = $this->getUser();
+
+        // Get all moving for $user
+        $movings = $movingsRepository->findByUser($user);
+
+
+        // 2. Render response
+        // --
+
         return $this->render('movings/index.html.twig', [
-            'movings' => $movingsRepository->findAll(),
+            'movings' => $movings,
         ]);
     }
 
@@ -30,21 +44,54 @@ class MovingsController extends AbstractController
      */
     public function create(Request $request): Response
     {
+        // 1. Retrieve Entities
+        // --
+
+        // New Moving
         $moving = new Movings();
+
+        // New User Moving relationship
+        $userMoving = new UsersMovings();
+
+        // Get current user
+        $user = $this->getUser();
+
+
+        // 2. Create form
+        // --
+
+        // Create new form based on the Moving Entity
         $form = $this->createForm(MovingsType::class, $moving);
+
+        // Handle the Request (request method === post)
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // On form submit
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            // Make User/Moving relation
+            $userMoving->setMoving($moving);
+            $userMoving->setUser($user);
+
+            // Save in database
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($moving);
+            $entityManager->persist($userMoving);
             $entityManager->flush();
 
             return $this->redirectToRoute('movings:app:index');
         }
 
+        // Create the form view
+        $form = $form->createView();
+
+
+        // 3. Render response
+        // --
+
         return $this->render('movings/new.html.twig', [
             'moving' => $moving,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

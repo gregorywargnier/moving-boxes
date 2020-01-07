@@ -19,32 +19,18 @@ class MovingsRepository extends ServiceEntityRepository
         parent::__construct($registry, Movings::class);
     }
 
-    // /**
-    //  * @return Movings[] Returns an array of Movings objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByUser($user, array $orderBy = null, $limit = null, $offset = null)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('b')
+            ->addSelect('m')
+            ->leftJoin('b.users', 'm')
+
+            ->where('m.user=:user')
+            ->setParameter('user', $user)
+
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Movings
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
